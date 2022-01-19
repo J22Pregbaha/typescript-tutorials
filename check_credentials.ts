@@ -9,9 +9,7 @@ let originalCredentials: Credentials = {
 }
 
 function VerifyCredentials(cred: Credentials) : boolean {
-    if(cred.user == originalCredentials.user && cred.password == originalCredentials.password) {
-        return true;
-    }
+    if(cred.user == originalCredentials.user && cred.password == originalCredentials.password) return true;
 
     return false;
 }

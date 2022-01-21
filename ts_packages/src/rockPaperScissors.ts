@@ -1,15 +1,19 @@
 import * as readline from 'node:readline';
-import { stdin as input, stdout as output } from 'process';
+import { stdin, stdout } from 'process';
 
 const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+    input: stdin,
+    output: stdout
 });
 
 let options: string[] = ["R", "P", "S"];
 
 export function rockPaperScissors(choice: string, randomOption: string) : string {
     let response: string = "Error";
+
+    if (!options.includes(choice)) {
+        return "Wrong input bud";
+    }
     
     if (choice == randomOption) {
         response = "Draw. Nobody wins";

@@ -14,26 +14,26 @@ const fullOptions = {
     "S": "Scissors"
 }
 
-export function rockPaperScissors(choice: string, randomOption: string) : string {
-    let response: string = "Error";
+export function rockPaperScissors(userChoice: string, computerChoice: string) : string {
+    let response: string;
 
-    if (!options.includes(choice)) {
+    if (!options.includes(userChoice)) {
         return "Wrong input bud";
     }
     
-    if (choice == randomOption) {
+    if (userChoice == computerChoice) {
         response = "Draw. Nobody wins";
-    } else if (choice == "R" && randomOption == "P"
-    || choice == "P" && randomOption == "S"
-    || choice == "S" && randomOption == "R") {
+    } else if (userChoice == "R" && computerChoice == "P"
+    || userChoice == "P" && computerChoice == "S"
+    || userChoice == "S" && computerChoice == "R") {
         response = "Computer wins";
-    } else if (choice == "R" && randomOption == "S"
-    || choice == "P" && randomOption == "R"
-    || choice == "S" && randomOption == "P") {
+    } else if (userChoice == "R" && computerChoice == "S"
+    || userChoice == "P" && computerChoice == "R"
+    || userChoice == "S" && computerChoice == "P") {
         response = "You win!";
     }
 
-    return `Computer chose ${fullOptions[randomOption]}. ${response}`;
+    return `Computer chose ${fullOptions[computerChoice]}. ${response}`;
 }
 
 let randomIndex: number = Math.floor(Math.random() * options.length);

@@ -1,4 +1,5 @@
 import { rockPaperScissors } from "../src/rockPaperScissors";
+import each from "jest-each";
 
 describe("RockPaperScissors game works", () => {
     test("Same choice is a draw", () => {
@@ -11,29 +12,15 @@ describe("RockPaperScissors game works", () => {
 });
 
 describe("You win", () => {
-    test("You win with rock", () => {
-        expect(rockPaperScissors("R", "S")).toBe("Computer chose Scissors. You win!");
-    });
-
-    test("You win with Paper", () => {
-        expect(rockPaperScissors("P", "R")).toBe("Computer chose Rock. You win!");
-    });
-
-    test("You win with scissors", () => {
-        expect(rockPaperScissors("S", "P")).toBe("Computer chose Paper. You win!");
+    each([["R", "S", "Scissors"], ["P", "R", "Rock"], ["S", "P", "Paper"]])
+    .test('You pick %s, computer picks %s. You win', (a: string, b: string, expected: string) => {
+        expect(rockPaperScissors(a, b)).toBe(`Computer chose ${expected}. You win!`);
     });
 });
 
 describe("Computer wins", () => {
-    test("Computer wins with rock", () => {
-        expect(rockPaperScissors("S", "R")).toBe("Computer chose Rock. Computer wins");
-    });
-
-    test("Computer wins with Paper", () => {
-        expect(rockPaperScissors("R", "P")).toBe("Computer chose Paper. Computer wins");
-    });
-
-    test("Computer wins with scissors", () => {
-        expect(rockPaperScissors("P", "S")).toBe("Computer chose Scissors. Computer wins");
+    each([["S", "R", "Rock"], ["R", "P", "Paper"], ["P", "S", "Scissors"]])
+    .test('Computer picks %s, you pick %s. Computer wins', (a: string, b: string, expected: string) => {
+        expect(rockPaperScissors(a, b)).toBe(`Computer chose ${expected}. Computer wins`);
     });
 });

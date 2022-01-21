@@ -1,10 +1,9 @@
 {
-  "name": "rock_paper_scissors",
+  "name": "testing-with-jest",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "play": "tsc && node dist/rockPaperScissors.js",
     "test": "jest --verbose"
   },
   "keywords": [],
@@ -12,9 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "@types/jest": "^27.4.0",
-    "grunt": "^1.4.1",
-    "grunt-ts": "^6.0.0-beta.22",
+    "@types/json-server": "^0.14.4",
+    "axios": "^0.25.0",
     "jest": "^27.4.7",
+    "json-server": "^0.17.0",
     "ts-jest": "^27.1.3",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4"

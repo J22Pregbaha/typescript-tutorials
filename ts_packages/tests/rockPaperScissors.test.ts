@@ -6,7 +6,7 @@ describe("RockPaperScissors game works", () => {
         expect(rockPaperScissors("R", "R")).toBe("Computer chose Rock. Draw. Nobody wins");
     });
 
-    each(["Rock", " "])
+    each(["Rock", " ", ""])
     .test("Input is not an option and, thus, is invalid", (invalidInput) => {
         expect(rockPaperScissors(invalidInput, "S")).toBe("Wrong input bud");
     });

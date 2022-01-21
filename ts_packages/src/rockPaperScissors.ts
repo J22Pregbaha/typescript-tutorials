@@ -1,3 +1,11 @@
+import * as readline from 'node:readline';
+import { stdin as input, stdout as output } from 'process';
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 let options: string[] = ["R", "P", "S"];
 
 export function rockPaperScissors(choice: string, randomOption: string) : string {
@@ -20,4 +28,8 @@ export function rockPaperScissors(choice: string, randomOption: string) : string
 
 let randomIndex: number = Math.floor(Math.random() * options.length);
 let randomOption: string = options[randomIndex];
-console.log(rockPaperScissors("R", randomOption));
+
+rl.question("Choose one: \nR - Rock, P - Paper, S - Scissors\n", (answer: string) => {
+    console.log(rockPaperScissors(answer, randomOption));
+    rl.close();
+});

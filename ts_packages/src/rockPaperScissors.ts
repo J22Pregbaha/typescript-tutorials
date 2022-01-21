@@ -8,6 +8,12 @@ const rl = readline.createInterface({
 
 let options: string[] = ["R", "P", "S"];
 
+const fullOptions = {
+    "R": "Rock",
+    "P": "Paper",
+    "S": "Scissors"
+}
+
 export function rockPaperScissors(choice: string, randomOption: string) : string {
     let response: string = "Error";
 
@@ -27,7 +33,7 @@ export function rockPaperScissors(choice: string, randomOption: string) : string
         response = "You win!";
     }
 
-    return `Computer chose ${randomOption}. ${response}`;
+    return `Computer chose ${fullOptions[randomOption]}. ${response}`;
 }
 
 let randomIndex: number = Math.floor(Math.random() * options.length);

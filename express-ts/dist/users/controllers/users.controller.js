@@ -35,7 +35,7 @@ class UsersController {
         return __awaiter(this, void 0, void 0, function* () {
             req.body.password = yield argon2_1.default.hash(req.body.password);
             const userId = yield users_service_1.default.create(req.body);
-            res.status(201).send({ id: userId });
+            res.status(201).json({ data: userId });
         });
     }
     patchUser(req, res) {
@@ -44,20 +44,22 @@ class UsersController {
                 req.body.password = yield argon2_1.default.hash(req.body.password);
             }
             log(yield users_service_1.default.patchById(req.body.id, req.body));
-            res.status(204).send();
+            const user = yield users_service_1.default.readById(req.body.id);
+            res.status(200).json(user);
         });
     }
     putUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             req.body.password = yield argon2_1.default.hash(req.body.password);
             log(yield users_service_1.default.putById(req.body.id, req.body));
-            res.status(204).send();
+            const user = yield users_service_1.default.readById(req.body.id);
+            res.status(200).json(user);
         });
     }
     removeUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             log(yield users_service_1.default.deleteById(req.body.id));
-            res.status(204).send();
+            res.status(200).json({ message: "User successfully deleted" });
         });
     }
 }

@@ -14,18 +14,18 @@ const log: debug.IDebugger = debug('app:users-controller');
 class UsersController {
     async listUsers(req: express.Request, res: express.Response) {
         const users = await usersService.list(100, 0);
-        res.status(200).send(users);
+        res.status(200).json(users);
     }
 
     async getUserById(req: express.Request, res: express.Response) {
         const user = await usersService.readById(req.body.id);
-        res.status(200).send(user);
+        res.status(200).json(user);
     }
 
     async createUser(req: express.Request, res: express.Response) {
         req.body.password = await argon2.hash(req.body.password);
         const userId = await usersService.create(req.body);
-        res.status(201).send({id: userId});
+        res.status(201).json({data: userId});
     }
 
     async patchUser(req: express.Request, res: express.Response) {
@@ -33,18 +33,20 @@ class UsersController {
             req.body.password = await argon2.hash(req.body.password);
         }
         log(await usersService.patchById(req.body.id, req.body));
-        res.status(204).send();
+        const user = await usersService.readById(req.body.id);
+        res.status(200).json(user);
     }
 
     async putUser(req: express.Request, res: express.Response) {
         req.body.password = await argon2.hash(req.body.password);
         log(await usersService.putById(req.body.id, req.body));
-        res.status(204).send();
+        const user = await usersService.readById(req.body.id);
+        res.status(200).json(user);
     }
 
     async removeUser(req: express.Request, res: express.Response) {
         log(await usersService.deleteById(req.body.id));
-        res.status(204).send();
+        res.status(200).json({message: "User successfully deleted"});
     }
 }
 

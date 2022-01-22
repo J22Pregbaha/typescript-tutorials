@@ -22,18 +22,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.port = exports.runningMessage = exports.debugLog = exports.CommonRoutesConfig = exports.routes = exports.app = void 0;
 const express_1 = __importDefault(require("express"));
-const http = __importStar(require("http"));
 const winston = __importStar(require("winston"));
 const expressWinston = __importStar(require("express-winston"));
 const cors_1 = __importDefault(require("cors"));
+const common_routes_config_1 = require("../common/common.routes.config");
+Object.defineProperty(exports, "CommonRoutesConfig", { enumerable: true, get: function () { return common_routes_config_1.CommonRoutesConfig; } });
 const users_routes_config_1 = require("../users/users.routes.config");
 const debug_1 = __importDefault(require("debug"));
 const app = (0, express_1.default)();
-const server = http.createServer(app);
+exports.app = app;
 const port = 3000;
+exports.port = port;
 const routes = [];
+exports.routes = routes;
 const debugLog = (0, debug_1.default)('app');
+exports.debugLog = debugLog;
 // here we are adding middleware to parse all incoming requests as JSON 
 app.use(express_1.default.json());
 // here we are adding middleware to allow cross-origin requests
@@ -54,13 +59,8 @@ app.use(expressWinston.logger(loggerOptions));
 routes.push(new users_routes_config_1.UserRoutes(app));
 // a simple route to make sure everything is working properly
 const runningMessage = `Server running on http://localhost:${port}`;
+exports.runningMessage = runningMessage;
 app.get('/', (req, res) => {
     res.status(200).send(runningMessage);
-});
-server.listen(port, () => {
-    routes.forEach((route) => {
-        debugLog(`Routes configured for ${route.getName()}`);
-    });
-    console.log(runningMessage);
 });
 //# sourceMappingURL=app.js.map

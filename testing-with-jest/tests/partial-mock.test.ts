@@ -1,4 +1,4 @@
-import defaultExport, {bar, foo} from '../src/foo-bar-baz';
+import defaultExport, {bar, foo, chee} from '../src/foo-bar-baz';
 import { describe, expect, test, jest } from '@jest/globals';
 
 jest.mock('../src/foo-bar-baz', () => {
@@ -21,5 +21,6 @@ describe('Partial mock test', () => {
     
         expect(foo).toBe('mocked foo');
         expect(bar()).toBe('bar');
+        expect(chee()).toBe(34);
     });
 });

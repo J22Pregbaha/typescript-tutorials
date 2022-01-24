@@ -10,20 +10,7 @@ const mockedAxios = jest.spyOn(axios, 'get');
 describe('Test mocking axios', () => {
     test('should fetch users', () => {
         // Arrange
-        const users = [
-            {
-                "id": 1,
-                "first_name": "Miklos",
-                "last_name": "Soproni",
-                "email": "miklos@gmail.com"
-            },
-            {
-                "id": 2,
-                "first_name": "Bennet",
-                "last_name": "Otoho",
-                "email": "benny@gmail.com"
-            },
-        ];
+        const users = [{"name": "Bob"}];
     
         mockedAxios.mockImplementation(() => Promise.resolve(users));
 

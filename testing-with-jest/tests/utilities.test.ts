@@ -30,12 +30,12 @@ describe('Testing math utilities', () => {
 });
 
 describe('Testing string utilities', () => {
-    each(["racecar", "radar", "level", "refer", "deified", "civic"])
+    each(["racecar", "radar"])
     .test('%s is a palindrome', (word: string) => {
         expect(isPalindrome(word)).toBeTruthy();
     });
 
-    each([["arc", "car"], ["cat", "act"], ["cider", "cried"]])
+    each([["arc", "car"], ["cat", "act"]])
     .test('%s is an anagram of %s', (w1: string, w2: string) => {
         expect(isAnagram(w1, w2)).toBeTruthy();
     });

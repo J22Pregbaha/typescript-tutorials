@@ -22,13 +22,13 @@ class UsersController {
     listUsers(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const users = yield users_service_1.default.list(100, 0);
-            res.status(200).send(users);
+            res.status(200).json(users);
         });
     }
     getUserById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const user = yield users_service_1.default.readById(req.body.id);
-            res.status(200).send(user);
+            res.status(200).json(user);
         });
     }
     createUser(req, res) {

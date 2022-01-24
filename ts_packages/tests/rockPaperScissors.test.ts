@@ -1,4 +1,5 @@
 import { rockPaperScissors } from "../src/rockPaperScissors";
+import { describe, expect, test } from '@jest/globals';
 import each from "jest-each";
 
 describe("RockPaperScissors game works", () => {

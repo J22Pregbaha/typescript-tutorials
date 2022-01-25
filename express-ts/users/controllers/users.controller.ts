@@ -34,14 +34,14 @@ class UsersController {
         }
         log(await usersService.patchById(req.body.id, req.body));
         const user = await usersService.readById(req.body.id);
-        res.status(200).json(user);
+        res.status(200).json({message:"User successfully updated", user: user});
     }
 
     async putUser(req: express.Request, res: express.Response) {
         req.body.password = await argon2.hash(req.body.password);
         log(await usersService.putById(req.body.id, req.body));
         const user = await usersService.readById(req.body.id);
-        res.status(200).json(user);
+        res.status(200).json({message:"User successfully updated", user: user});
     }
 
     async removeUser(req: express.Request, res: express.Response) {

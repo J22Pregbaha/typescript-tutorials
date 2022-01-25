@@ -58,7 +58,7 @@ class Middleware {
             const user = yield users_service_1.default.getUserByEmail(req.body.email);
             if (user && user.id === req.params.userId) {
                 res.status(400).send({
-                    error: "Email already exists"
+                    error: "Email already belongs to this user"
                 });
             }
             else {

@@ -2,7 +2,7 @@ import request from 'supertest';
 import { describe, expect, test } from '@jest/globals';
 import { app } from '../src/app';
 
-let elementId: string; // store the id of the created user in the db
+let elementId: string; // store the id of the created user
 const testEmail: string = "test2@gmail.com";
 
 describe('Check endpoints', () => {
@@ -33,25 +33,6 @@ describe('Check endpoints', () => {
         });
     });
 
-    describe('Check Post middleware', () => {
-        test('should return email already exists', (done) => {
-            request(app)
-            .post('/users')
-            .expect("Content-Type", /json/)
-            .send({
-                "email": testEmail,
-                "password": "pass"
-            })
-            .expect(400, {
-                error: "Email already exists"
-            })
-            .end((err) => {
-                if (err) return done(err);
-                return done();
-            });
-        });
-    });
-
     test('should get proper user', async () => {
         await request(app)
         .get(`/user/${elementId}`)
@@ -74,8 +55,8 @@ describe('Check endpoints', () => {
         .expect(200)
         .then((res) => {
             expect(res.body).toBeTruthy();
-            expect(res.body.email).toBe("pip@pep.com");
-            expect(res.body.id).toBe(elementId);
+            expect(res.body.user.email).toBe("pip@pep.com");
+            expect(res.body.user.id).toBe(elementId);
         });
     });
 
@@ -89,7 +70,7 @@ describe('Check endpoints', () => {
         .expect(200)
         .then((res) => {
             expect(res.body).toBeTruthy();
-            expect(res.body.lastName).toBe("Franco");
+            expect(res.body.user.lastName).toBe("Franco");
         });
     });
 

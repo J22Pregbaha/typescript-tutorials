@@ -1,0 +1,20 @@
+# This list is guaranteed to never be null (if anything, it will be empty)
+# and never contain any elements that are null - that’s what the two exclamation marks are for.
+type Query {
+    info: String!
+    feed: [Link!]!
+    # Fetch a single link by its `id`
+    link(id: ID!): Link!
+}
+
+type Mutation {
+    post(url: String!, description: String!): Link!
+    update(id:ID!, url: String!, description: String!): Link
+    delete(id:ID!): [Link]
+}
+
+type Link {
+    id: ID!
+    description: String!
+    url: String!
+}

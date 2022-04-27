@@ -6,7 +6,6 @@ interface Link {
     url: string
 }
 
-// 1
 let links = [{
     id: 'link-0',
     url: 'www.howtographql.com',
@@ -18,7 +17,6 @@ let links = [{
     description: 'Fullstack tutorial for GraphQL 2'
 }]
 
-// 1
 const resolvers = {
     Query: {
         info: () => `This is the API of a Hackernews Clone`,
@@ -26,7 +24,6 @@ const resolvers = {
         link: (parent, args) => links.find(e => e.id == args.id)
     },
     Mutation: {
-        // 2
         post: (parent, args: Link) => {
             let idCount = links.length;
 
@@ -52,7 +49,6 @@ const resolvers = {
     }
 }
 
-// 3
 import fs from 'fs';
 import path from 'path';
 const server = new ApolloServer({

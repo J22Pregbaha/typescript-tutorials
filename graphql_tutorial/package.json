@@ -4,13 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "tsc && cd dist && node script.js",
+    "start-web": "tsc && cd dist && node index.js",
+    "start-prisma-web": "tsc && cd dist && node prisma-index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^3.13.0",
     "apollo-server": "^2.25.3",
     "graphql": "^14.7.0"
+  },
+  "devDependencies": {
+    "prisma": "^3.13.0"
   }
 }
